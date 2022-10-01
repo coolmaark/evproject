@@ -17,9 +17,7 @@ app.get("/",function(req,res){
 }); 
 app.get("/contactus",function(req,res){
   res.render("contactus");
-  document.querySelector('btn').addEventListener("click",function(req,res){
-    alert("Thank You For Submitting The Feedback We Will Be In Contact With You In A short Time");
-    res.render("home");
+  
   });
 }); 
 app.get("/login",function(req,res){
