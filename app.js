@@ -4,16 +4,29 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const _=require("lodash");
+const { allowedNodeEnvironmentFlags } = require("process");
 
 const app = express();
-app.use( express.static('images'))
+app.use( express.static('public'))
 app.set('view engine', 'ejs');
 //body passer
 app.use(bodyParser.urlencoded({extended: true}));
-// app.use(express.static("public"));
 //code starts
 app.get("/",function(req,res){
   res.render("home");
+}); 
+app.get("/contactus",function(req,res){
+  res.render("contactus");
+  document.querySelector('btn').addEventListener("click",function(req,res){
+    alert("Thank You For Submitting The Feedback We Will Be In Contact With You In A short Time");
+    res.render("home");
+  });
+}); 
+app.get("/login",function(req,res){
+  res.render("login");
+}); 
+app.get("/book",function(req,res){
+  res.render("book");
 }); 
 //code ends
 app.listen(3000, function() {
