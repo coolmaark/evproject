@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital@1&family=Montserrat&family=Sacramento&display=swap');
+.navbar{
+    padding-top: 50px;
+    padding-bottom: 100px;
+}
+.navbar-brand,.navbar-items{
+    font-family: 'Montserrat', sans-serif;
+}
+h1{
+    padding-top: 100px;
+    padding-bottom: 100px;
+    font-family: 'Montserrat', sans-serif;
+}
