@@ -1,0 +1,42 @@
+<%- include("partials/header");-%>
+<link rel="stylesheet" href="/css/login.css">
+
+<div class="container">
+    <div class="center">
+        <h1>Sign Up</h1>
+        <form action="" method="post">
+            <div class="txt_field">
+                <input type="text" required>
+                <span></span>
+                <label >Full Name</label>
+
+            </div>
+            <div class="txt_field">
+                <input type="email" required>
+                <span></span>
+                <label >Email Adress </label>
+            </div>
+            <div class="txt_field">
+                <input type="email" required>
+                <span></span>
+                <label >Confirm Email Adress </label>
+            </div>
+            <div class="txt_field">
+                <input type="password" required>
+                <span></span>
+                <label >Password</label>
+            </div>
+            <div class="txt_field">
+                <input type="password" required>
+                <span></span>
+                <label >Confirm Password</label>
+            </div>
+            <input type="submit" value="Login">
+            <div class="signup_link">
+                Already Have an Account?<a href="/login">Login</a>
+            </div>
+        </form>
+    </div>
+
+</div>
+<%- include("partials/footer"); -%>
