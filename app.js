@@ -78,6 +78,12 @@ app.get("/book",checkAuthenticated, function(req,res){
 app.get("/register",checkNotAuthenticated, function(req,res){
   res.render("register");
 }); 
+app.get("/hy", function(req,res){
+  res.render("hy");
+});
+app.get("/mg", function(req,res){
+  res.render("mg");
+});
 
 app.post("/register",checkNotAuthenticated, async (req, res) => {
 
