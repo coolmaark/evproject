@@ -84,6 +84,15 @@ app.get("/hy", function(req,res){
 app.get("/mg", function(req,res){
   res.render("mg");
 });
+app.get("/tata", function(req,res){
+  res.render("tata");
+});
+app.get("/kia", function(req,res){
+  res.render("kia");
+});
+app.get("/every",function(req,res){
+  res.render("every");
+});
 
 app.post("/register",checkNotAuthenticated, async (req, res) => {
 
