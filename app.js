@@ -1,9 +1,4 @@
-if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config()
-}
-
-
-
+require("dotenv").config()
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
@@ -20,91 +15,76 @@ initializePassport(
   passport,
   email => users.find(user => user.email === email),
   id => users.find(user => user.id === id)
-  )
+);
 
-
+//DB
 const users = []
 const app = express();
-
 app.use( express.static('public'))
-
 app.set('view engine', 'ejs');
 app.use(methodOverride("_method"))
-//body passer
-app.use(bodyParser.urlencoded({extended: true}));
-
-
 app.use(flash())
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(session({
     secret: process.env.SESSION_SECRET,
-    resave: false, // We wont resave the session variable if nothing is changed
+    resave: false,
     saveUninitialized: false
-}))
-app.use(passport.initialize()) 
-app.use(passport.session())
-// app.use(methodOverride("_method"))
+}));
+app.use(passport.initialize()); 
+app.use(passport.session());
 
-// Configuring the register post functionality
+
+//for title case
+function sentenceCase (str) {
+  if ((str===null) || (str===''))
+      return false;
+  else
+  str = str.toString();
+  return str.replace(/\w\S*/g,
+  function(txt){return txt.charAt(0).toUpperCase() +
+      txt.substr(1).toLowerCase();});
+}
+
+//getting routes
+app.get("/",checkAuthenticated, function(req,res){res.render("home",{name: sentenceCase(req.user.name)});}); 
+
+app.get("/contactus",checkAuthenticated ,function(req,res){res.render("contactus");}); 
+
+app.get("/login",checkNotAuthenticated , function(req,res){res.render("login");}); 
+
+app.get("/book",checkAuthenticated, function(req,res){res.render("every");}); 
+
+app.get("/register",checkNotAuthenticated, function(req,res){res.render("register");});
+
+app.get("/hyundai", function(req,res){res.render("hyundai");});
+
+app.get("/morrisgarages",checkAuthenticated, function(req,res){res.render("morrisgarages");});
+
+app.get("/tata",checkAuthenticated, function(req,res){res.render("tata");});
+
+app.get("/kia",checkAuthenticated, function(req,res){res.render("kia");});
+
+
+
+//getting routes ends here
+
+//posting routes
 app.post("/login",checkNotAuthenticated, passport.authenticate("local", {
     successRedirect: "/",
-    failureRedirect: "/register",
+    failureRedirect: "/login",
     failureFlash: true
 }))
-
-
-
-//code starts
-app.get("/",checkAuthenticated, function(req,res){
-  res.render("home",{name: req.user.name});
-}); 
-
-app.get("/contactus",checkAuthenticated ,function(req,res){
-  res.render("contactus");
-  
-  }); 
-
-  app.get("/login",checkNotAuthenticated , function(req,res){
-  res.render("login");
-}); 
-
-app.get("/hyundai",function(req, res){
-  res.render("hyundai");
-});
-
-app.get("/book",checkAuthenticated, function(req,res){
-  res.render("book");
-}); 
-
-app.get("/register",checkNotAuthenticated, function(req,res){
-  res.render("register");
-}); 
-app.get("/hy", function(req,res){
-  res.render("hy");
-});
-app.get("/mg", function(req,res){
-  res.render("mg");
-});
-app.get("/tata", function(req,res){
-  res.render("tata");
-});
-app.get("/kia", function(req,res){
-  res.render("kia");
-});
-app.get("/every",function(req,res){
-  res.render("every");
-});
-
 app.post("/register",checkNotAuthenticated, async (req, res) => {
-
+  
   try {
-      const hashedPassword = await bcrypt.hash(req.body.password, 10)
+      const hash = await bcrypt.hash(req.body.password, 10)
       users.push({
           id: Date.now().toString(), 
           name: req.body.username,
           email: req.body.email,
-          password: hashedPassword,
+          password: hash,
       })
-      console.log(users); // Display newly registered in the console
+      // console.log(users); 
       res.redirect("/login")
       
   } catch (e) {
@@ -112,14 +92,22 @@ app.post("/register",checkNotAuthenticated, async (req, res) => {
       res.redirect("/register")
   }
 })
-//code ends
+//posting routes ends here
 
+//deleting routes
 app.delete("/logout", (req, res) => {
   req.logout(req.user, err => {
-      if (err) return next(err)
-      res.redirect("/")
-  })
-})
+      if (err){
+        // console.log(err);
+        return next(err);
+      }
+    
+    });
+    res.redirect("/login")
+});
+//deleting routes ends here
+
+//checing authentication
 function checkAuthenticated(req, res, next){
   if(req.isAuthenticated()){
       return next()
@@ -133,7 +121,9 @@ function checkNotAuthenticated(req, res, next){
   }
   next()
 }
+//checking authentication
 
-app.listen(3000, function() {
-  console.log("Server started on port 3000");
+
+app.listen(process.env.PORT, function() {
+  console.log("Server started on http://localhost:"+process.env.PORT);
 });
