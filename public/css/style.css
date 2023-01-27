@@ -3,3 +3,72 @@
 .navbar-brand,.navbar-items{
     font-family: 'Montserrat', sans-serif;
 }
+.rkk{
+    background-color: black;
+    margin: 0;
+}
+.ho1{
+    padding-top: 2%;
+    padding-bottom: 2%;
+    text-align: center;
+    background-color: lavender;
+    /* background-image: url(https://di-uploads-pod16.dealerinspire.com/jaguarenglewood/uploads/2020/10/roadside-assitance.jpg); */
+    background-position: center;
+    background-size: cover;
+}
+.ho1 h1{
+    color: cadetblue;
+    font-size: 6vmin;
+    font-weight: 1000;
+}
+.ho1 p{
+    color: gray;
+    font-size: 3vmin;
+    font-weight: 800;
+}
+.ho1 .line{
+    width: 15%;
+    height: 4px;
+    background: rgb(15, 20, 10);
+    margin: 10px auto;
+    border-radius: 5px;
+
+}
+.ho2{
+    padding-top: 11%;
+    padding-bottom: 11%;
+    /* background-color: sandybrown; */
+    text-align: center;
+    /* background-image: url(https://www.lafarmbureau.com/wp-content/uploads/2020/10/LAFB-Roadside-Assistance.jpg); */
+    background-image: url(https://www.kia.com/content/dam/kia2/in/en/images/service/kia-owners/road-side-assistance/road-side-assistance-hero-d.jpg);
+    background-position: center;
+    background-size: cover;
+}
+.ho2 h1{
+    color: wheat;
+    font-size: 5vmin;
+    font-weight: bolder;
+}
+.ho2 p{
+    color: whitesmoke;
+    font-weight: bolder;
+    font-size: 4vmin;
+}
+.ho2 .line{
+    width: 250px;
+    height: 4px;
+    background: rgb(55, 56, 54);
+    margin: 10px auto;
+    border-radius: 5px;
+    
+}
+
+.ho3{
+    padding-top: 3%;
+    padding-bottom: 1%;
+    text-align: center;
+    font-weight: bold;
+}
+.ho4{
+    padding-bottom: 5%;
+}
