@@ -5,6 +5,12 @@
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
   }
+.carousel-inner{
+     height: 500px;
+}
+.carousel-item{
+    height: 500px;
+}
 .navbar-brand,.navbar-items{
     font-family: 'Montserrat', sans-serif;
 }
