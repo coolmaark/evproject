@@ -1,0 +1,24 @@
+
+/* footer */
+
+.footer{
+    width: 100%;
+    min-height: 100%;
+    padding: 20px 80px;
+    margin: 0;
+    background-color: lightblue;
+    text-align: center;
+}
+.footer .p1{
+    font-weight: 500;
+}
+.footer p{
+    font-size: medium;
+    margin: 20px auto;
+    color: black;
+    padding: 20px auto;
+    font-weight: bold;
+}
+.footer{
+    padding: 10px;
+}
