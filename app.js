@@ -56,7 +56,7 @@ app.get("/book",checkAuthenticated, function(req,res){res.render("every");});
 
 app.get("/register",checkNotAuthenticated, function(req,res){res.render("register");});
 
-app.get("/hyundai", function(req,res){res.render("hyundai");});
+app.get("/hyundai",checkAuthenticated, function(req,res){res.render("hyundai");});
 
 app.get("/morrisgarages",checkAuthenticated, function(req,res){res.render("morrisgarages");});
 
